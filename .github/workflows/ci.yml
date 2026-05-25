@@ -24,13 +24,11 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Check backend imports
         run: |
-          cd backend
+          cd app
           python -m compileall .
 
   frontend:
