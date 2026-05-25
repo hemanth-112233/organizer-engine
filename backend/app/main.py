@@ -7,19 +7,31 @@ from .models import Base, FileRecord
 from .scanner import scan_and_organize
 from .watcher import start_watcher
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Routers
+from .routers.upload import router as upload_router
 
 # Create DB tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+allowed = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=allowed,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# include routers
+app.include_router(upload_router)
 
 # ---------------- STARTUP EVENT ----------------
 @app.on_event("startup")

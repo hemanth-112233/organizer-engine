@@ -52,18 +52,26 @@
 
 body {
   margin: 0;
+  @apply bg-white dark:bg-slate-900;
 }
 
 #root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
+}
+
+/* Tailwind base utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small helpers */
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+  backdrop-filter: blur(8px);
 }
 
 h1,

@@ -6,3 +6,4 @@ files.db
 app.log
 .env
 monitored/
+.env.example
