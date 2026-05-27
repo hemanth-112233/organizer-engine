@@ -7,3 +7,4 @@ app.log
 .env
 monitored/
 .env.example
+uploads/
